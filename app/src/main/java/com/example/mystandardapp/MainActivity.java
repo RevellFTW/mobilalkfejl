@@ -2,6 +2,7 @@ package com.example.mystandardapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -23,7 +24,11 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view){
         String userName = userNameET.getText().toString();
         String password = passwordET.getText().toString();
-
         //logged in, redirect
+    }
+
+    public void register(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 }

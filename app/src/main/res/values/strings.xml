@@ -3,4 +3,10 @@
     <string name="password">Jelszó</string>
     <string name="name">Név</string>
     <string name="login">Bejelentkezés</string>
+    <string name="registration">Regisztráció</string>
+    <string name="user_name">Felhasználónév</string>
+    <string name="email_address">Email cím</string>
+    <string name="password_again">Jelszó újra</string>
+    <string name="cancel">Mégse</string>
+    <string name="product_description">Telefoncsomag leírása.</string>
 </resources>
