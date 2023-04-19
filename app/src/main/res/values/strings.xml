@@ -9,4 +9,9 @@
     <string name="password_again">Jelszó újra</string>
     <string name="cancel">Mégse</string>
     <string name="product_description">Telefoncsomag leírása.</string>
+    <string name="googleLogin">Bejelentkezés google fiókkal</string>
+    <string name="anonymLogin">Bejelentkezés névtelenül</string>
+    <string name="account_type">Fiók típusa</string>
+    <string name="customer">Vásárló</string>
+    <string name="phone_number">Telefonszám</string>
 </resources>

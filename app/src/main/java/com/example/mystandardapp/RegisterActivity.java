@@ -2,13 +2,21 @@ package com.example.mystandardapp;
 
 import static androidx.core.content.PackageManagerCompat.LOG_TAG;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -18,18 +26,26 @@ public class RegisterActivity extends AppCompatActivity {
     EditText userEmailEditText;
     EditText passwordEditText;
     EditText passwordConfirmEditText;
+    EditText phoneEditText;
+
 
     private SharedPreferences preferences;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        mAuth = FirebaseAuth.getInstance();
+
 
         userNameEditText = findViewById(R.id.userNameEditText);
         userEmailEditText = findViewById(R.id.userEmailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         passwordConfirmEditText = findViewById(R.id.passwordAgainEditText);
+
+        phoneEditText = findViewById(R.id.phoneEditText);
 
         preferences = getSharedPreferences(PREF_KEY, MODE_PRIVATE);
         String userName = preferences.getString("userName", "");
@@ -37,11 +53,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         userNameEditText.setText(userName);
         passwordEditText.setText(password);
+
         passwordConfirmEditText.setText(password);
+
+
 
     }
 
-    public void register(View view) {
+    public void registerUser(View view) {
         String userName = userNameEditText.getText().toString();
         String email = userEmailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
@@ -51,6 +70,26 @@ public class RegisterActivity extends AppCompatActivity {
             Log.e(LOG_TAG, "Nem egyenlő a jelszó és a megerősítése.");
             return;
         }
+       String phone =  phoneEditText.getText().toString();
+
+        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Log.i(LOG_TAG, "Sikeres regisztráció");
+
+                    startMobilePackages();
+                } else {
+                    Log.e(LOG_TAG, "Sikertelen regisztráció");
+                    Toast.makeText(RegisterActivity.this, "User was't created successfully:", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    private void startMobilePackages(/* registered used class */) {
+        Intent intent = new Intent(this, packageList.class);
+        startActivity(intent);
     }
 
     public void cancel(View view) {

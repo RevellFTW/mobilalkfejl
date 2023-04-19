@@ -20,7 +20,7 @@
         android:id="@+id/userNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
@@ -34,7 +34,7 @@
         android:id="@+id/userEmailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
@@ -48,7 +48,7 @@
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
@@ -62,7 +62,7 @@
         android:id="@+id/passwordAgainEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
@@ -72,11 +72,24 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@id/passwordEditText"/>
 
+    <EditText
+        android:id="@+id/phoneEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_side"
+        android:layout_marginTop="@dimen/register_margin_top"
+        android:layout_marginRight="@dimen/default_margin_side"
+        android:ems="10"
+        android:hint="@string/phone_number"
+        android:inputType="phone"
+        android:layout_below="@id/passwordAgainEditText"/>
+
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/passwordAgainEditText"
+        android:layout_below="@id/phoneEditText"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true">
 
@@ -84,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registration"
-            android:onClick="register"/>
+            android:onClick="registerUser"/>
 
         <Button
             android:layout_width="wrap_content"
