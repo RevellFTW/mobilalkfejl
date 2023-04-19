@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,75 +7,122 @@
     tools:context=".packageList">
 
 
-    <ImageView
-        android:id="@+id/donut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/icecream_circle"
-        android:layout_marginTop="@dimen/register_margin_top"
-        android:layout_marginStart="@dimen/default_margin_side"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ImageView
-        android:id="@+id/ice_cream"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/icecream_circle"
-        android:layout_marginTop="@dimen/register_margin_top"
-        android:layout_marginStart="@dimen/default_margin_side"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/donut"/>
-
-    <ImageView
-        android:id="@+id/froyo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/froyo_circle"
-        android:layout_marginTop="@dimen/register_margin_top"
-        android:layout_marginStart="@dimen/default_margin_side"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ice_cream"/>
-
+    <!-- Title -->
     <TextView
-        android:id="@+id/donut_description"
-        android:layout_width="0dp"
+        android:id="@+id/title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/default_margin_side"
-        android:layout_marginStart="@dimen/default_margin_side"
-        android:layout_marginTop="@dimen/default_margin_side"
-        android:text="@string/product_description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ice_cream"
-        app:layout_constraintTop_toTopOf="@+id/ice_cream" />
+        android:text="Buy Mobile Package"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:textColor="@android:color/white"/>
 
-    <TextView
-        android:id="@+id/ice_cream_description"
-        android:layout_width="0dp"
+    <!-- Data Section -->
+    <LinearLayout
+        android:id="@+id/data_section"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/default_margin_side"
-        android:layout_marginStart="@dimen/default_margin_side"
-        android:layout_marginTop="@dimen/default_margin_side"
-        android:text="@string/product_description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/froyo"
-        app:layout_constraintTop_toTopOf="@+id/froyo" />
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_below="@id/title">
 
-    <TextView
-        android:id="@+id/froyo_description"
-        android:layout_width="0dp"
+        <!-- Data Label -->
+        <TextView
+            android:id="@+id/data_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Data Package"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <!-- Data Options -->
+        <RadioGroup
+            android:id="@+id/data_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/option_1gb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1 GB"/>
+
+            <RadioButton
+                android:id="@+id/option_2gb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2 GB"/>
+
+            <RadioButton
+                android:id="@+id/option_5gb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5 GB"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <!-- SMS Section -->
+    <LinearLayout
+        android:id="@+id/sms_section"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/default_margin_side"
-        android:layout_marginStart="@dimen/default_margin_side"
-        android:layout_marginTop="@dimen/default_margin_side"
-        android:text="@string/product_description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/donut"
-        app:layout_constraintTop_toTopOf="@+id/donut" />
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_below="@id/data_section">
+
+        <!-- SMS Label -->
+        <TextView
+            android:id="@+id/sms_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select SMS Package"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <!-- SMS Options -->
+        <RadioGroup
+            android:id="@+id/sms_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/option_100_sms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="100 SMS"/>
+
+            <RadioButton
+                android:id="@+id/option_500_sms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="500 SMS"/>
+
+            <RadioButton
+                android:id="@+id/option_unlimited_sms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unlimited SMS"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <!-- Purchase Button -->
+    <Button
+        android:id="@+id/purchase_button"
+        android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Purchase"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_margin="16dp"
+            android:layout_below="@id/sms_section"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
