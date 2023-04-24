@@ -31,6 +31,33 @@
         app:layout_constraintVertical_bias="0.141"
         tools:layout_editor_absoluteX="16dp" />
 
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/editTextPhone"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:hint="@string/phoneNumber"-->
+<!--        android:inputType="phone"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"-->
+<!--        app:layout_constraintVertical_bias="0.141"-->
+<!--        tools:layout_editor_absoluteX="38dp" />-->
+
+    <Button
+        android:id="@+id/mobileLoginButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="showMobileLoginDialog"
+        android:text="@string/phoneLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+
+        app:layout_constraintVertical_bias="0.078" />
     <Button
         android:id="@+id/loginButton"
         android:layout_width="0dp"
@@ -41,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/mobileLoginButton"
         app:layout_constraintVertical_bias="0.078" />
 
     <Button
@@ -58,18 +85,6 @@
         app:layout_constraintVertical_bias="0.078" />
 
     <Button
-        android:id="@+id/googleButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/googleLogin"
-        android:onClick="googleLogin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerButton"
-        app:layout_constraintVertical_bias="0.078" />
-    <Button
         android:id="@+id/anonymButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -79,6 +94,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/googleButton"
+        app:layout_constraintTop_toBottomOf="@+id/registerButton"
         app:layout_constraintVertical_bias="0.078" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
