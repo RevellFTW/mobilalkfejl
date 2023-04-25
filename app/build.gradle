@@ -41,4 +41,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
+
+    def billing_version = "3.0.0"
+    implementation "com.android.billingclient:billing:$billing_version"
 }

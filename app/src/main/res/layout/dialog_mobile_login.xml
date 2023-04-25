@@ -9,12 +9,12 @@
         android:id="@+id/editTextPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter phone number"/>
+        android:hint="@string/enterPhone"/>
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"/>
+        android:text="@string/sendCode"/>
 
 </LinearLayout>

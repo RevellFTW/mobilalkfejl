@@ -3,6 +3,7 @@ package com.example.mystandardapp;
 import static androidx.core.content.PackageManagerCompat.LOG_TAG;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -16,18 +17,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.SkuDetails;
+import com.android.billingclient.api.SkuDetailsParams;
+import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText userNameET;
     EditText passwordET;
-    EditText phoneET;
-    private Button buttonVerify;
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +47,6 @@ public class MainActivity extends AppCompatActivity {
         userNameET = findViewById(R.id.editTextUserName);
         passwordET = findViewById(R.id.editTextPassword);
         mAuth = FirebaseAuth.getInstance();
-        buttonVerify = findViewById(R.id.mobileLoginButton);
-
-
     }
 
     public void showMobileLoginDialog(View view) {
@@ -54,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(v -> {
             String phone = editTextPhoneNumber.getText().toString().trim();
 
-            if(TextUtils.isEmpty(phone)){
+            if (TextUtils.isEmpty(phone)) {
                 Toast.makeText(MainActivity.this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
@@ -74,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onVerificationFailed(@NonNull FirebaseException e) {
                             Toast.makeText(MainActivity.this, "Verification failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                             // Save the verification ID and resending token so we can use them later
@@ -92,9 +100,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-    public void login(View view){
+    public void login(View view) {
         String userName = userNameET.getText().toString();
         String password = passwordET.getText().toString();
 
@@ -103,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         FirebaseUser user = mAuth.getCurrentUser();
-                        if(user != null) {
+                        if (user != null) {
                             redirectToMain(view);
                         }
                     } else {
@@ -124,9 +130,6 @@ public class MainActivity extends AppCompatActivity {
     public void register(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
-    }
-
-    public void googleLogin(View view) {
     }
 
     public void anonymLogin(View view) {
