@@ -119,6 +119,7 @@
             android:layout_height="wrap_content"
             android:text="Purchase"
             android:textSize="18sp"
+            android:onClick="buyPackage"
             android:textColor="@android:color/white"
             android:layout_margin="16dp"
             android:layout_below="@id/sms_section"/>

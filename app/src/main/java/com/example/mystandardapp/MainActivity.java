@@ -11,28 +11,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.billingclient.api.BillingClient;
-import com.android.billingclient.api.BillingClientStateListener;
-import com.android.billingclient.api.BillingResult;
-import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.PurchasesUpdatedListener;
-import com.android.billingclient.api.SkuDetails;
-import com.android.billingclient.api.SkuDetailsParams;
-import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText editTextPhoneNumber = dialog.findViewById(R.id.editTextPhoneNumber);
         final Button buttonLogin = dialog.findViewById(R.id.buttonLogin);
 
-
+        dialog.show();
         buttonLogin.setOnClickListener(v -> {
             String phone = editTextPhoneNumber.getText().toString().trim();
 
@@ -96,11 +85,15 @@ public class MainActivity extends AppCompatActivity {
                     }
             );
         });
-        dialog.show();
     }
 
 
     public void login(View view) {
+        //check if userNameET and passwordET are not empty
+        if(TextUtils.isEmpty(userNameET.getText().toString()) || TextUtils.isEmpty(passwordET.getText().toString())) {
+            Toast.makeText(this, "Please enter a valid username and password", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String userName = userNameET.getText().toString();
         String password = passwordET.getText().toString();
 
