@@ -1,18 +1,30 @@
 package com.example.mystandardapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class packageList extends AppCompatActivity {
+    private MobileOrderViewModel mobileOrderViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_list);
-
+        mobileOrderViewModel = new ViewModelProvider(this).get(MobileOrderViewModel.class);
+        mobileOrderViewModel.getAllMobileOrders().observe(this, new Observer<List<MobileOrder>>() {
+            @Override
+            public void onChanged(List<MobileOrder> mobileOrders) {
+                adapter.setMobileOrders(mobileOrders);
+            }
+        });
     }
 
     public void buyPackage(View view) {
