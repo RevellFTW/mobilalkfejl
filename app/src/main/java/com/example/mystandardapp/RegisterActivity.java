@@ -1,7 +1,5 @@
 package com.example.mystandardapp;
 
-import static androidx.core.content.PackageManagerCompat.LOG_TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -88,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void startMobilePackages(/* registered used class */) {
-        Intent intent = new Intent(this, packageList.class);
+        Intent intent = new Intent(this, PackageOrderActivity.class);
         startActivity(intent);
     }
 

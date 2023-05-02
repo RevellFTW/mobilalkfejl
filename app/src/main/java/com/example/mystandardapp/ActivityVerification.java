@@ -59,7 +59,7 @@ public class ActivityVerification extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // User sign in successful, start the main activity
-                            Intent intent = new Intent(ActivityVerification.this, packageList.class);
+                            Intent intent = new Intent(ActivityVerification.this, PackageOrderActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();

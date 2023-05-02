@@ -1,9 +1,6 @@
 package com.example.mystandardapp;
 
-import static androidx.core.content.PackageManagerCompat.LOG_TAG;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -116,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void redirectToMain(View view) {
-        Intent intent = new Intent(this, packageList.class);
+        Intent intent = new Intent(this, PackageOrderActivity.class);
         startActivity(intent);
     }
 

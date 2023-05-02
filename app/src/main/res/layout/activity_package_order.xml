@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PackageOrderActivity">
+
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buy Mobile Package"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:textColor="@android:color/white"/>
+
+    <!-- Data Section -->
+    <LinearLayout
+        android:id="@+id/data_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_below="@id/title">
+
+        <!-- Data Label -->
+        <TextView
+            android:id="@+id/data_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Data Package"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <!-- Data Options -->
+        <RadioGroup
+            android:id="@+id/data_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/option_1gb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1 GB"/>
+
+            <RadioButton
+                android:id="@+id/option_2gb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2 GB"/>
+
+            <RadioButton
+                android:id="@+id/option_5gb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5 GB"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <!-- SMS Section -->
+    <LinearLayout
+        android:id="@+id/sms_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_below="@id/data_section">
+
+        <!-- SMS Label -->
+        <TextView
+            android:id="@+id/sms_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select SMS Package"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <!-- SMS Options -->
+        <RadioGroup
+            android:id="@+id/sms_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/option_100_sms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="100 SMS"/>
+
+            <RadioButton
+                android:id="@+id/option_500_sms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="500 SMS"/>
+
+            <RadioButton
+                android:id="@+id/option_unlimited_sms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unlimited SMS"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <!-- Purchase Button -->
+    <Button
+        android:id="@+id/purchase_button"
+        android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Purchase"
+            android:textSize="18sp"
+            android:onClick="buyPackage"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="3dp"
+            android:layout_below="@id/sms_section"/>
+    <Button
+        android:id="@+id/package_list_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Purchased Packages"
+        android:textSize="18sp"
+        android:onClick="viewPackages"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/purchase_button"/>
+
+
+</RelativeLayout>

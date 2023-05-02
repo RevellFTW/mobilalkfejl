@@ -27,4 +27,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="sendCode">Send Code In SMS</string>
     <string name="enterPhone">Enter phone number</string>
+    <string name="modify">Mentés</string>
 </resources>
