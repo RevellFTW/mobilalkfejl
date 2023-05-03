@@ -38,16 +38,18 @@ public class PackageDatabaseHelper extends SQLiteOpenHelper {
 
     public Package getPackage(long id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_NAME, new String[] { COLUMN_ID,
-                        COLUMN_DATA, COLUMN_SMS }, COLUMN_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null && cursor.moveToFirst()) {
-            return new Package(Integer.parseInt(cursor.getString(0)),
-                    cursor.getString(1), cursor.getString(2));
-
+        Cursor cursor = db.query(TABLE_NAME, new String[] { COLUMN_ID, COLUMN_DATA, COLUMN_SMS }, COLUMN_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor == null) {
+            return null;
+        }
+        cursor.moveToFirst();
+        if (cursor.moveToFirst()) {
+            return new Package(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2));
         }
         return null;
     }
+
+
 
     public boolean insertData(String data, String sms) {
         SQLiteDatabase db = this.getWritableDatabase();
