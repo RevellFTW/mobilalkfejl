@@ -37,11 +37,15 @@ public class PackageListActivity extends AppCompatActivity {
         packageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //todo add package to the intent to get the ID
                 String packageData = ((TextView) view).getText().toString();
-                Intent intent = new Intent(PackageListActivity.this, PackageModifyActivity.class);
-                intent.putExtra("packageData", packageData);
-                startActivity(intent);
+                Package currentPackage = packageDbHelper.getPackage(id);
+                if(currentPackage != null) {
+                    Intent intent = new Intent(PackageListActivity.this, PackageModifyActivity.class);
+                    intent.putExtra("packageData", packageData);
+                    intent.putExtra("packageId", currentPackage.getId());
+                    startActivity(intent);
+                }
+                //todo handle if currentPackage is null
             }
         });
     }

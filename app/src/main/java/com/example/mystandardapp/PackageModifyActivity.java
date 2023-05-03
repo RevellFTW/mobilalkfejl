@@ -9,18 +9,22 @@ import android.widget.RadioGroup;
 
 public class PackageModifyActivity extends AppCompatActivity {
 
-    private Package packageEntry;
     private PackageDatabaseHelper _packageDbHelper = new PackageDatabaseHelper(this);
+    private long _packageId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_modify);
         //get package from intent
-        packageEntry = new Package(0,"1GB", "100");
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            _packageId = extras.getInt("packageId");
+            //The key argument here must match that used in the other activity
+        }
     }
 
     public void updatePackage(View view) {
-        //todo get id from intent
+        //todo preselect the radio buttons
         RadioGroup dataGroup = findViewById(R.id.data_options);
         RadioButton selectedDataOption = findViewById(dataGroup.getCheckedRadioButtonId());
 
@@ -31,12 +35,10 @@ public class PackageModifyActivity extends AppCompatActivity {
         String smsOptionText = selectedSmsOption.getText().toString();
 
         Package packageEntry = new Package(dataOptionText, smsOptionText);
-        _packageDbHelper.updatePackage(packageEntry);
+        _packageDbHelper.updatePackage(packageEntry, _packageId);
     }
 
     public void deletePackage(View view) {
-        //todo get id from intent
-        int id = this.packageEntry.getId();
-        _packageDbHelper.deletePackage(id);
+        _packageDbHelper.deletePackage(_packageId);
     }
 }

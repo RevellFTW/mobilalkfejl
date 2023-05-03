@@ -29,13 +29,15 @@ public class PackageOrderActivity extends AppCompatActivity {
         String dataOptionText = selectedDataOption.getText().toString();
         String smsOptionText = selectedSmsOption.getText().toString();
 
-        _packageDbHelper.insertData(dataOptionText, smsOptionText);
+        boolean success = _packageDbHelper.insertData(dataOptionText, smsOptionText);
 
-        String message = "You have purchased " + dataOptionText + " data and " + smsOptionText + ". We will contact your service provider to make the changes";
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-
-
-
+        if(success) {
+            String message = "You have purchased " + dataOptionText + " data and " + smsOptionText + ". We will contact your service provider to make the changes";
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void viewPackages(View view) {
