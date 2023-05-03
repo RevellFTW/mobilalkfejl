@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,20 +39,22 @@ public class PackageListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String packageData = ((TextView) view).getText().toString();
-                Package currentPackage = packageDbHelper.getPackage(id);
+                Package currentPackage = packageDbHelper.getPackage(id+1);
                 if(currentPackage != null) {
                     Intent intent = new Intent(PackageListActivity.this, PackageModifyActivity.class);
                     intent.putExtra("packageData", packageData);
                     intent.putExtra("packageId", currentPackage.getId());
                     startActivity(intent);
                 }
-                //todo handle if currentPackage is null
+                else {
+                    Toast.makeText(PackageListActivity.this, "Package not found", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    public void modifyPackage(View view) {
-        Intent intent = new Intent(this, PackageModifyActivity.class);
+    public void goBack(View view) {
+        Intent intent = new Intent(this, PackageOrderActivity.class);
         startActivity(intent);
     }
 }

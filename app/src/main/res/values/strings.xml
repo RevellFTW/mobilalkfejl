@@ -28,4 +28,7 @@
     <string name="sendCode">Send Code In SMS</string>
     <string name="enterPhone">Enter phone number</string>
     <string name="modify">Mentés</string>
+    <string name="back">Vissza</string>
+    <string name="delete">Törlés</string>
+    <string name="save">mentés</string>
 </resources>

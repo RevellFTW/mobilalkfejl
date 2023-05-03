@@ -20,17 +20,18 @@
     <ListView
         android:id="@+id/package_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="465dp"
         android:layout_marginTop="16dp"
         android:divider="@null"
         android:dividerHeight="0dp" />
+    />
     <Button
-        android:id="@+id/purchase_button"
+        android:id="@+id/back_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/modify"
+        android:text="@string/back"
         android:textSize="18sp"
-        android:onClick="modifyPackage"
+        android:onClick="goBack"
         android:textColor="@android:color/white"
         android:layout_margin="16dp"
         android:layout_below="@id/package_list_view"/>

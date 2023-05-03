@@ -117,17 +117,17 @@
         android:id="@+id/purchase_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/modify"
+        android:text="@string/save"
         android:textSize="18sp"
         android:onClick="updatePackage"
         android:textColor="@android:color/white"
         android:layout_margin="16dp"
         android:layout_below="@id/sms_section"/>
     <Button
-        android:id="@+id/package_list_button"
+        android:id="@+id/package_delete_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Törlés"
+        android:text="@string/delete"
         android:textSize="18sp"
         android:onClick="deletePackage"
         android:textColor="@android:color/white"
@@ -136,6 +136,19 @@
         android:layout_marginTop="3dp"
         android:layout_marginBottom="16dp"
         android:layout_below="@id/purchase_button"/>
+    <Button
+        android:id="@+id/package_list_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:textSize="18sp"
+        android:onClick="goBack"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/package_delete_button"/>
 
 
 </RelativeLayout>

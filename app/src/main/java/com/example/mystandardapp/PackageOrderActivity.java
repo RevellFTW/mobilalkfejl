@@ -27,9 +27,11 @@ public class PackageOrderActivity extends AppCompatActivity {
         RadioButton selectedSmsOption = findViewById(smsGroup.getCheckedRadioButtonId());
 
         String dataOptionText = selectedDataOption.getText().toString();
+        int dataOptionID = selectedDataOption.getId();
         String smsOptionText = selectedSmsOption.getText().toString();
+        int smsOptionID = selectedSmsOption.getId();
 
-        boolean success = _packageDbHelper.insertData(dataOptionText, smsOptionText);
+        boolean success = _packageDbHelper.insertData(dataOptionID, smsOptionID);
 
         if(success) {
             String message = "You have purchased " + dataOptionText + " data and " + smsOptionText + ". We will contact your service provider to make the changes";

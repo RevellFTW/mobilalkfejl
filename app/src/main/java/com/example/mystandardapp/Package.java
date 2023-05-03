@@ -4,18 +4,18 @@ public class Package {
 
 
     public int id;
-    public String dataPackage;
-    public String smsPackage;
+    public int dataPackage;
+    public int smsPackage;
 
     public Package() {
     }
 
-    public Package(String data, String sms) {
+    public Package(int data, int sms) {
         this.dataPackage = data;
         this.smsPackage = sms;
     }
 
-    public Package(int id, String data, String sms) {
+    public Package(int id, int data, int sms) {
         this.id = id;
         this.dataPackage = data;
         this.smsPackage = sms;
@@ -29,19 +29,19 @@ public class Package {
         this.id = id;
     }
 
-    public String getDataPackage() {
+    public int getDataPackage() {
         return dataPackage;
     }
 
-    public void setDataPackage(String dataPackage) {
+    public void setDataPackage(int dataPackage) {
         this.dataPackage = dataPackage;
     }
 
-    public String getSmsPackage() {
+    public int getSmsPackage() {
         return smsPackage;
     }
 
-    public void setSmsPackage(String smsPackage) {
+    public void setSmsPackage(int smsPackage) {
         this.smsPackage = smsPackage;
     }
 }
