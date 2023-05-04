@@ -16,6 +16,9 @@ public class PackageDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_DATA = "data";
     private static final String COLUMN_SMS = "sms";
+    private static final String COLUMN_PHONE = "phone";
+    private static final String COLUMN_DATAID = "dataid";
+    private static final String COLUMN_SMSID = "smsid";
 
     public PackageDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -26,7 +29,10 @@ public class PackageDatabaseHelper extends SQLiteOpenHelper {
         String createTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_DATA + " TEXT, " +
-                COLUMN_SMS + " TEXT)";
+                COLUMN_SMS + " TEXT," +
+                COLUMN_PHONE + " TEXT," +
+                COLUMN_SMSID + " TEXT," +
+                COLUMN_DATAID + " TEXT)";
         db.execSQL(createTable);
     }
 
@@ -36,53 +42,62 @@ public class PackageDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public Package getPackage(long id){
+    public Package getPackage(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_NAME, new String[] { COLUMN_ID, COLUMN_DATA, COLUMN_SMS }, COLUMN_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
+        Cursor cursor = db.query(TABLE_NAME, new String[]{COLUMN_ID, COLUMN_DATA, COLUMN_SMS, COLUMN_PHONE, COLUMN_SMSID, COLUMN_DATAID}, COLUMN_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
-            Package pack =  new Package(Integer.parseInt(cursor.getString(0)), cursor.getInt(1), cursor.getInt(2));
+            Package pack = new Package(Integer.parseInt(cursor.getString(0)), cursor.getInt(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+            db.close();
             cursor.close();
             return pack;
         }
+        db.close();
         return null;
     }
 
 
-
-    public boolean insertData(int data, int sms) {
+    public boolean insertData(String data, String sms, String number, int smsId, int dataId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_DATA, data);
         contentValues.put(COLUMN_SMS, sms);
+        contentValues.put(COLUMN_PHONE, number);
+        contentValues.put(COLUMN_SMSID, smsId);
+        contentValues.put(COLUMN_DATAID, dataId);
         long result = db.insert(TABLE_NAME, null, contentValues);
+        db.close();
         if (result == -1) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
 
     }
+
     public void updatePackage(Package pack, long id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_DATA, pack.getDataPackage());
-        values.put(COLUMN_SMS, pack.getSmsPackage());
-        db.update(TABLE_NAME, values, COLUMN_ID + " = ?", new String[] { String.valueOf(pack.getId()) });
+        values.put(COLUMN_SMS, pack.getDataPackage());
+        values.put(COLUMN_SMSID, pack.getSmsPackage());
+        values.put(COLUMN_DATAID, pack.getSmsPackage());
+        db.update(TABLE_NAME, values, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
         db.close();
     }
+
     public Cursor getData() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
+
     public void deletePackage(long packageId) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, COLUMN_ID + " = ?",
-                new String[] { String.valueOf(packageId) });
+                new String[]{String.valueOf(packageId)});
         db.close();
     }
 }

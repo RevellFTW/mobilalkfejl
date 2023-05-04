@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,13 +26,14 @@ public class PackageOrderActivity extends AppCompatActivity {
 
         RadioGroup smsGroup = findViewById(R.id.sms_options);
         RadioButton selectedSmsOption = findViewById(smsGroup.getCheckedRadioButtonId());
-
+        EditText phoneNumberEditText = findViewById(R.id.phoneEditText);
         String dataOptionText = selectedDataOption.getText().toString();
-        int dataOptionID = selectedDataOption.getId();
+        int dataId = selectedDataOption.getId();
         String smsOptionText = selectedSmsOption.getText().toString();
-        int smsOptionID = selectedSmsOption.getId();
+        int smsId = selectedSmsOption.getId();
+        String phoneNumber = phoneNumberEditText.getText().toString();
 
-        boolean success = _packageDbHelper.insertData(dataOptionID, smsOptionID);
+        boolean success = _packageDbHelper.insertData(dataOptionText, smsOptionText, phoneNumber, smsId, dataId);
 
         if(success) {
             String message = "You have purchased " + dataOptionText + " data and " + smsOptionText + ". We will contact your service provider to make the changes";

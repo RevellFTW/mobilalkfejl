@@ -29,7 +29,7 @@ public class PackageListActivity extends AppCompatActivity {
         Cursor data =  packageDbHelper.getData();
         ArrayList<String> packageList = new ArrayList<>();
         while (data.moveToNext()) {
-            packageList.add("Data: " + data.getString(1) + "\nSMS: " + data.getString(2));
+            packageList.add("Data: " + data.getString(1) + "\nSMS: " + data.getString(2) + "\nPhone Number: " + data.getString(3));
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, packageList);
@@ -39,11 +39,13 @@ public class PackageListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String packageData = ((TextView) view).getText().toString();
-                Package currentPackage = packageDbHelper.getPackage(id+1);
-                if(currentPackage != null) {
+                Cursor cursor = packageDbHelper.getData();
+                cursor.moveToPosition(position);
+                int packageId = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+                if(packageId != -1) {
                     Intent intent = new Intent(PackageListActivity.this, PackageModifyActivity.class);
                     intent.putExtra("packageData", packageData);
-                    intent.putExtra("packageId", currentPackage.getId());
+                    intent.putExtra("packageId", packageId);
                     startActivity(intent);
                 }
                 else {

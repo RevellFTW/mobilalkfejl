@@ -13,6 +13,8 @@ public class PackageModifyActivity extends AppCompatActivity {
     private RadioGroup dataGroup;
     private RadioGroup smsGroup;
     private long _packageId;
+    private Package _mobilePackage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,28 +25,33 @@ public class PackageModifyActivity extends AppCompatActivity {
             _packageId = extras.getInt("packageId");
             //The key argument here must match that used in the other activity
         }
+        _mobilePackage = _packageDbHelper.getPackage(_packageId);
         dataGroup = findViewById(R.id.data_options);
         smsGroup = findViewById(R.id.sms_options);
 
-        Package pack = _packageDbHelper.getPackage(_packageId);
-        int dataOptionID = pack.getDataPackage();
-        int smsOptionID = pack.getSmsPackage();
-
+        int dataOptionID = _mobilePackage.getDataPackage();
+        int smsOptionID = _mobilePackage.getSmsPackage();
+        //todo for some reason these buttons are null
         RadioButton radioButton = dataGroup.findViewById(dataOptionID);
-        radioButton.setChecked(true);
+        if (radioButton != null) {
+            radioButton.setChecked(true);
+        }
         RadioButton radioButton2 = smsGroup.findViewById(smsOptionID);
-        radioButton2.setChecked(true);
+        if (radioButton2 != null) {
+            radioButton2.setChecked(true);
+        }
     }
 
     public void updatePackage(View view) {
-        //todo preselect the radio buttons
         RadioButton selectedDataOption = findViewById(dataGroup.getCheckedRadioButtonId());
         RadioButton selectedSmsOption = findViewById(smsGroup.getCheckedRadioButtonId());
 
         int dataOptionID = selectedDataOption.getId();
+        String dataOption = selectedDataOption.getText().toString();
         int smsOptionID = selectedSmsOption.getId();
+        String smsOption = selectedSmsOption.getText().toString();
 
-        Package packageEntry = new Package(dataOptionID, smsOptionID);
+        Package packageEntry = new Package(dataOptionID, smsOptionID, _mobilePackage.getMobileNumber(), dataOption, smsOption);
         _packageDbHelper.updatePackage(packageEntry, _packageId);
     }
 
