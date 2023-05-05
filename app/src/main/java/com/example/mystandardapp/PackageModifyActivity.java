@@ -2,6 +2,7 @@ package com.example.mystandardapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -53,13 +54,16 @@ public class PackageModifyActivity extends AppCompatActivity {
 
         Package packageEntry = new Package(dataOptionID, smsOptionID, _mobilePackage.getMobileNumber(), dataOption, smsOption);
         _packageDbHelper.updatePackage(packageEntry, _packageId);
+        goBack(view);
     }
 
     public void deletePackage(View view) {
         _packageDbHelper.deletePackage(_packageId);
+        goBack(view);
     }
 
     public void goBack(View view) {
-        finish();
+        Intent intent = new Intent(this, PackageListActivity.class);
+        startActivity(intent);
     }
 }

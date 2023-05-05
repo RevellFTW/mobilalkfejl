@@ -48,7 +48,7 @@ public class PackageDatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
-            Package pack = new Package(Integer.parseInt(cursor.getString(0)), cursor.getInt(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+            Package pack = new Package(Integer.parseInt(cursor.getString(0)), cursor.getInt(5), cursor.getInt(4), cursor.getString(3), cursor.getString(1), cursor.getString(2));
             db.close();
             cursor.close();
             return pack;
@@ -79,8 +79,8 @@ public class PackageDatabaseHelper extends SQLiteOpenHelper {
     public void updatePackage(Package pack, long id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_DATA, pack.getDataPackage());
-        values.put(COLUMN_SMS, pack.getDataPackage());
+        values.put(COLUMN_DATA, pack.getDataPackageText());
+        values.put(COLUMN_SMS, pack.getSmsPackageText());
         values.put(COLUMN_SMSID, pack.getSmsPackage());
         values.put(COLUMN_DATAID, pack.getSmsPackage());
         db.update(TABLE_NAME, values, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});

@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".PackageModifyActivity">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
     <LinearLayout
@@ -13,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:scrollbars="horizontal"
         android:padding="16dp">
 
         <!-- Data Label -->
@@ -138,5 +147,6 @@
         android:layout_marginBottom="16dp"
         android:layout_below="@id/package_delete_button"/>
 
-
+    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

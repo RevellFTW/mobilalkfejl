@@ -70,6 +70,11 @@ public class RegisterActivity extends AppCompatActivity {
         }
        String phone =  phoneEditText.getText().toString();
 
+        if(userName.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()){
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

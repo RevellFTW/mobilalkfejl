@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyStandardApp</string>
+    <string name="app_name">Mobilcsomag vásárlás</string>
     <string name="password">Jelszó</string>
     <string name="name">Név</string>
     <string name="login">Bejelentkezés</string>
@@ -16,17 +16,16 @@
     <string name="phone_number">Telefonszám</string>
     <string name="phoneLogin">Bejelentkezés telefonszámmal</string>
     <string name="phoneNumber">Telefonszám</string>
-    <string name="title_activity_mobile_login">MobileLoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="sendCode">Send Code In SMS</string>
-    <string name="enterPhone">Enter phone number</string>
+    <string name="action_sign_in">Lépj be vagy regisztrálj</string>
+    <string name="action_sign_in_short">Belépés</string>
+    <string name="welcome">"Üdv !"</string>
+    <string name="invalid_username">Nem valid felhasználónév</string>
+    <string name="invalid_password">A jelszónak több mint 5 karakternek kell lennie.</string>
+    <string name="login_failed">"Hibás bejelentkezés"</string>
+    <string name="sendCode">Kód küldése SMS-ben</string>
+    <string name="enterPhone">Add meg a telefonszámod</string>
     <string name="modify">Mentés</string>
     <string name="back">Vissza</string>
     <string name="delete">Törlés</string>

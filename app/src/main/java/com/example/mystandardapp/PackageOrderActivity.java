@@ -22,9 +22,17 @@ public class PackageOrderActivity extends AppCompatActivity {
 
     public void buyPackage(View view) {
         RadioGroup dataGroup = findViewById(R.id.data_options);
+        if(dataGroup.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(getApplicationContext(), "Please select a data option", Toast.LENGTH_SHORT).show();
+            return;
+        }
         RadioButton selectedDataOption = findViewById(dataGroup.getCheckedRadioButtonId());
 
         RadioGroup smsGroup = findViewById(R.id.sms_options);
+        if(smsGroup.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(getApplicationContext(), "Please select an sms option", Toast.LENGTH_SHORT).show();
+            return;
+        }
         RadioButton selectedSmsOption = findViewById(smsGroup.getCheckedRadioButtonId());
         EditText phoneNumberEditText = findViewById(R.id.phoneEditText);
         String dataOptionText = selectedDataOption.getText().toString();
@@ -32,6 +40,11 @@ public class PackageOrderActivity extends AppCompatActivity {
         String smsOptionText = selectedSmsOption.getText().toString();
         int smsId = selectedSmsOption.getId();
         String phoneNumber = phoneNumberEditText.getText().toString();
+
+        if(phoneNumber.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please enter a phone number", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         boolean success = _packageDbHelper.insertData(dataOptionText, smsOptionText, phoneNumber, smsId, dataId);
 

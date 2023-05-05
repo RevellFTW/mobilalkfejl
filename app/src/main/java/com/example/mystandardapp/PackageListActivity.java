@@ -1,6 +1,8 @@
 package com.example.mystandardapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.OnLifecycleEvent;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -53,6 +55,19 @@ public class PackageListActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Cursor data = packageDbHelper.getData();
+        ArrayList<String> packageList = new ArrayList<>();
+        while (data.moveToNext()) {
+            packageList.add("Data: " + data.getString(1) + "\nSMS: " + data.getString(2) + "\nPhone Number: " + data.getString(3));
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, packageList);
+        packageListView.setAdapter(adapter);
     }
 
     public void goBack(View view) {
