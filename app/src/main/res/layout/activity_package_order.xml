@@ -28,7 +28,7 @@
                     android:id="@+id/data_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Select Data Package"
+                    android:text="@string/select_data_package"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -75,7 +75,7 @@
                     android:id="@+id/sms_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Select SMS Package"
+                    android:text="@string/select_sms_package"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -131,7 +131,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="3dp"
                 android:onClick="buyPackage"
-                android:text="Purchase"
+                android:text="@string/purchase"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
@@ -145,7 +145,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:onClick="viewPackages"
-                android:text="View Purchased Packages"
+                android:text="@string/view_purchased_packages"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 

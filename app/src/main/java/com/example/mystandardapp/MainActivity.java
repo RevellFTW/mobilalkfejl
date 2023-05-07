@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -42,14 +43,19 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText editTextPhoneNumber = dialog.findViewById(R.id.editTextPhoneNumber);
         final Button buttonLogin = dialog.findViewById(R.id.buttonLogin);
-
         dialog.show();
         buttonLogin.setOnClickListener(v -> {
+            if(editTextPhoneNumber == null ){
+                Toast.makeText(MainActivity.this, "Kérlek adj meg egy telefonszámot", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             String phone = editTextPhoneNumber.getText().toString().trim();
 
-            if (TextUtils.isEmpty(phone)) {
-                Toast.makeText(MainActivity.this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
+            if (TextUtils.isEmpty(phone) || !PhoneNumberUtils.isGlobalPhoneNumber(phone)) {
+                Toast.makeText(MainActivity.this, "Kérlek adj meg egy helyes telefonszámot, + szimbólummal kezdve", Toast.LENGTH_SHORT).show();
+                return;
+                //dialog.dismiss();
             }
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     phone,
@@ -60,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                             mAuth.signInWithCredential(phoneAuthCredential);
-                            Toast.makeText(MainActivity.this, "Verification completed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Siker", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onVerificationFailed(@NonNull FirebaseException e) {
-                            Toast.makeText(MainActivity.this, "Verification failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Helytelen telefonszám", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -88,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view) {
         //check if userNameET and passwordET are not empty
         if(TextUtils.isEmpty(userNameET.getText().toString()) || TextUtils.isEmpty(passwordET.getText().toString())) {
-            Toast.makeText(this, "Please enter a valid username and password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Adj meg valid e-mail címet és jelszót", Toast.LENGTH_SHORT).show();
             return;
         }
         String userName = userNameET.getText().toString();
@@ -104,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     } else {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(MainActivity.this, "Authentication failed.",
+                        Toast.makeText(MainActivity.this, "Helytelen e-mail vagy jelszó.",
                                 Toast.LENGTH_SHORT).show();
                     }
 
@@ -121,6 +127,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
-
-
 }

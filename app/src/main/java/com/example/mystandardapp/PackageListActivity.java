@@ -31,7 +31,7 @@ public class PackageListActivity extends AppCompatActivity {
         Cursor data =  packageDbHelper.getData();
         ArrayList<String> packageList = new ArrayList<>();
         while (data.moveToNext()) {
-            packageList.add("Data: " + data.getString(1) + "\nSMS: " + data.getString(2) + "\nPhone Number: " + data.getString(3));
+            packageList.add("Adat: " + data.getString(1) + "\nSMS: " + data.getString(2) + "\nTelefonszám: " + data.getString(3));
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, packageList);
@@ -51,7 +51,7 @@ public class PackageListActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(PackageListActivity.this, "Package not found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PackageListActivity.this, "Nem találjuk a csomagot", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -63,7 +63,7 @@ public class PackageListActivity extends AppCompatActivity {
         Cursor data = packageDbHelper.getData();
         ArrayList<String> packageList = new ArrayList<>();
         while (data.moveToNext()) {
-            packageList.add("Data: " + data.getString(1) + "\nSMS: " + data.getString(2) + "\nPhone Number: " + data.getString(3));
+            packageList.add("Adat: " + data.getString(1) + "\nSMS: " + data.getString(2) + "\nTelefonszám: " + data.getString(3));
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, packageList);

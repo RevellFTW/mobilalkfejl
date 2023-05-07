@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:hint="Verification code" />
+        android:hint="@string/verification_code" />
 
     <Button
         android:id="@+id/buttonVerifyCode"
@@ -28,7 +28,7 @@
         android:ems="10"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:text="Verify Code" />
+        android:text="@string/verify_code" />
 
     <ProgressBar
         android:id="@+id/progressBarVerification"

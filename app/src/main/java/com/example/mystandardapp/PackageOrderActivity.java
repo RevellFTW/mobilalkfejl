@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -23,14 +24,14 @@ public class PackageOrderActivity extends AppCompatActivity {
     public void buyPackage(View view) {
         RadioGroup dataGroup = findViewById(R.id.data_options);
         if(dataGroup.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(getApplicationContext(), "Please select a data option", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Válassz egy adatcsomagot", Toast.LENGTH_SHORT).show();
             return;
         }
         RadioButton selectedDataOption = findViewById(dataGroup.getCheckedRadioButtonId());
 
         RadioGroup smsGroup = findViewById(R.id.sms_options);
         if(smsGroup.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(getApplicationContext(), "Please select an sms option", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Válassz ki egy SMS opciót", Toast.LENGTH_SHORT).show();
             return;
         }
         RadioButton selectedSmsOption = findViewById(smsGroup.getCheckedRadioButtonId());
@@ -42,18 +43,23 @@ public class PackageOrderActivity extends AppCompatActivity {
         String phoneNumber = phoneNumberEditText.getText().toString();
 
         if(phoneNumber.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Please enter a phone number", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Kérlek adj meg egy telefonszámot", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(!PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber)) {
+            Toast.makeText(getApplicationContext(), "Kérlek adj meg egy érvényes telefonszámot, + szimbólummal kezdve.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         boolean success = _packageDbHelper.insertData(dataOptionText, smsOptionText, phoneNumber, smsId, dataId);
 
         if(success) {
-            String message = "You have purchased " + dataOptionText + " data and " + smsOptionText + ". We will contact your service provider to make the changes";
+            String message = "Sikeresen vásároltál " + dataOptionText + " adat mennyiséget és " + smsOptionText + "-t. Felvesszük a szolgáltatóddal a kapcsolatot és hamarosan aktiváljuk a csomagodat.";
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Hiba történt", Toast.LENGTH_SHORT).show();
         }
     }
 

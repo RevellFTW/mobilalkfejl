@@ -30,4 +30,10 @@
     <string name="back">Vissza</string>
     <string name="delete">Törlés</string>
     <string name="save">mentés</string>
+    <string name="select_sms_package">Válassz SMS csomagot</string>
+    <string name="select_data_package">Válassz adat csomagot</string>
+    <string name="purchase">Megrendelés</string>
+    <string name="view_purchased_packages">Vásárolt csomagok megtekintése</string>
+    <string name="verification_code">Megerősítő kód</string>
+    <string name="verify_code">Megerősítés</string>
 </resources>

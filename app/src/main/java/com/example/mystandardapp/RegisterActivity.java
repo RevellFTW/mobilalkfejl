@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = RegisterActivity.class.getName();
@@ -65,13 +67,23 @@ public class RegisterActivity extends AppCompatActivity {
         String passwordConfirm = passwordConfirmEditText.getText().toString();
 
         if (!password.equals(passwordConfirm)) {
-            Log.e(LOG_TAG, "Nem egyenlő a jelszó és a megerősítése.");
+            Toast.makeText(this, "A két jelszó nem egyezik meg", Toast.LENGTH_SHORT).show();
             return;
         }
        String phone =  phoneEditText.getText().toString();
+        //check if email is formatted correctly
+        if(!isValidEmail(email)){
+            Toast.makeText(this, "Adj meg valid e-mail címet", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!isValidPassword(password)){
+            Toast.makeText(this, "Minimum 6 karakter hosszú jelszót adj meg", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         if(userName.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()){
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Kérlek, tölts ki minden mezőt", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -88,6 +100,10 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean isValidPassword(String password) {
+        return password.length() >= 6;
     }
 
     private void startMobilePackages(/* registered used class */) {
@@ -133,5 +149,10 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.i(LOG_TAG, "onRestart");
+    }
+    public static boolean isValidEmail(String email) {
+        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*"
+                + "@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        return Pattern.matches(regex, email);
     }
 }
